@@ -1,0 +1,197 @@
+:root {
+    --pastel-green: #c1e1c1; /* Light green */
+    --pastel-purple: #d8bfd8; /* Light purple (Thistle) */
+    --today-highlight: #ffcc00;
+    --border-color: #ccc;
+    --text-color: #333;
+    --modal-bg: rgba(0, 0, 0, 0.5);
+}
+
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top */
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding-top: 20px; /* Add some space at the top */
+    color: var(--text-color);
+    -webkit-user-select: none; /* Disable text selection for swipe */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.calendar-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px; /* Max width for larger screens */
+    text-align: center;
+    overflow: hidden; /* Important for swipe */
+    position: relative; /* Needed for swipe detection */
+    touch-action: pan-y; /* Allow vertical scroll, prevent horizontal page scroll during swipe */
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.calendar-header h1 {
+    margin: 0;
+    font-size: 1.5em;
+    flex-grow: 1; /* Allow title to take space */
+    text-align: center;
+}
+
+.calendar-header button {
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 5px 10px;
+}
+
+.counters {
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-around; /* Space out counters */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 10px; /* Space between counters */
+}
+
+.counter {
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.counter.attila {
+    background-color: var(--pastel-green);
+}
+
+.counter.johanna {
+    background-color: var(--pastel-purple);
+}
+
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ensure equal column widths */
+}
+
+.calendar-table th,
+.calendar-table td {
+    border: 1px solid var(--border-color);
+    padding: 0; /* Remove padding, control size with height/line-height */
+    text-align: center;
+    font-size: 0.9em;
+    height: 40px; /* Fixed height for cells */
+    line-height: 40px; /* Vertically center text */
+    position: relative; /* For absolute positioning of the circle */
+}
+
+.calendar-table th {
+    background-color: #eee;
+    font-weight: bold;
+}
+
+.calendar-table td {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.calendar-table td.empty {
+    background-color: #f9f9f9;
+    cursor: default;
+}
+
+.calendar-table td.today .date-number {
+    /* Circle effect */
+    display: inline-block; /* Needed for transform */
+    border: 2px solid var(--today-highlight);
+    border-radius: 50%;
+    width: 30px; /* Circle size */
+    height: 30px;
+    line-height: 28px; /* Adjust line height for circle */
+    position: absolute; /* Center the circle */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    box-sizing: border-box; /* Include border in size */
+}
+
+.calendar-table td.color-attila {
+    background-color: var(--pastel-green);
+}
+
+.calendar-table td.color-johanna {
+    background-color: var(--pastel-purple);
+}
+
+/* --- Modal Styles --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: var(--modal-bg);
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 300px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.modal-content p {
+    margin-bottom: 15px;
+}
+
+#modal-date-display {
+    font-weight: bold;
+}
+
+.color-btn {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    min-width: 100px; /* Ensure buttons have decent width */
+}
+
+.color-btn.attila {
+    background-color: var(--pastel-green);
+}
+.color-btn.johanna {
+    background-color: var(--pastel-purple);
+}
+.color-btn.blank {
+    background-color: #eee;
+}
+#close-modal {
+    background-color: #aaa;
+    color: white;
+}

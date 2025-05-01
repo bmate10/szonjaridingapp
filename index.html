@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Color Calendar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <button id="prev-month" aria-label="Previous Month">&lt;</button>
+            <h1 id="month-year"></h1>
+            <button id="next-month" aria-label="Next Month">&gt;</button>
+        </div>
+
+        <div class="counters">
+            <span class="counter attila">Attila: <span id="attila-count">0</span></span>
+            <span class="counter johanna">Johanna: <span id="johanna-count">0</span></span>
+        </div>
+
+        <table class="calendar-table">
+            <thead>
+                <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                </tr>
+            </thead>
+            <tbody id="calendar-body">
+                </tbody>
+        </table>
+    </div>
+
+    <div id="color-picker-modal" class="modal">
+        <div class="modal-content">
+            <p>Choose a color for <span id="modal-date-display"></span>:</p>
+            <button data-color="attila" class="color-btn attila">Attila (Green)</button>
+            <button data-color="johanna" class="color-btn johanna">Johanna (Purple)</button>
+            <button data-color="blank" class="color-btn blank">Clear Color</button>
+            <button id="close-modal" class="color-btn">Cancel</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
